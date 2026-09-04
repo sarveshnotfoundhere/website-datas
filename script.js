@@ -1,5 +1,0 @@
-const glow=document.querySelector('.cursor-glow');
-window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.animate([{opacity:0,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}],{duration:700,fill:'forwards',easing:'cubic-bezier(.2,.7,.2,1)'});observer.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.timeline article,.work,.edu-row,.chart-card').forEach(el=>observer.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>document.body.dataset.nav='clicked'));
