@@ -21,3 +21,5 @@ main section{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);
 .statement div{max-width:1200px}
 @media(max-width:900px){body{cursor:auto}.orb-cursor{display:none}.floating-orb{width:56px;height:56px;right:5vw;bottom:4vh}.page-hero:before{left:12%}}
 @media(prefers-reduced-motion:reduce){body{opacity:1;animation:none;cursor:auto}.orb-cursor,.floating-orb{display:none}main section{opacity:1;transform:none}}
+
+.webgl-scene{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply}.page-hero{min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end}.page-hero h1{will-change:transform}.page-hero h1:hover{letter-spacing:-.075em}.work-archive{scroll-snap-type:x mandatory}.work-archive article{scroll-snap-align:start}.work-archive article:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.75),transparent 34%);opacity:.55;pointer-events:none}.list-item:hover{background:rgba(255,255,255,.18)}@media(prefers-reduced-motion:reduce){.webgl-scene{display:none}}
