@@ -1,0 +1,10 @@
+(()=>{const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cursor=document.createElement('div');cursor.className='orb-cursor';document.body.append(cursor);
+const orb=document.createElement('div');orb.className='floating-orb';orb.innerHTML='<i></i><b></b>';document.body.append(orb);
+if(!reduce){let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cursor.classList.add('is-live')});(function loop(){x+=(tx-x)*.14;y+=(ty-y)*.14;cursor.style.transform='translate3d('+x+'px,'+y+'px,0)';requestAnimationFrame(loop)})();addEventListener('pointermove',e=>{const rx=(e.clientY/innerHeight-.5)*-14,ry=(e.clientX/innerWidth-.5)*14;orb.style.transform='translate3d(0,0,0) rotateX('+rx+'deg) rotateY('+ry+'deg)'});}
+document.querySelectorAll('a,article,.line-link').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('is-hover'));el.addEventListener('mouseleave',()=>cursor.classList.remove('is-hover'))});
+document.querySelectorAll('.work-archive article,.list-item,.terminal').forEach(el=>{el.addEventListener('pointermove',e=>{if(reduce)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.setProperty('--rx',(-y*4)+'deg');el.style.setProperty('--ry',(x*4)+'deg')});el.addEventListener('pointerleave',()=>{el.style.removeProperty('--rx');el.style.removeProperty('--ry')})});
+document.querySelectorAll('.site-nav nav a,.line-link,.contact-panel a,.brand').forEach(a=>a.addEventListener('click',e=>{const href=a.getAttribute('href');if(!href||href.startsWith('#')||href.startsWith('mailto:')||a.target==='_blank')return;e.preventDefault();document.body.classList.add('is-leaving');setTimeout(()=>location.href=href,260)}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('main section,article').forEach(e=>io.observe(e));
+addEventListener('scroll',()=>{document.documentElement.style.setProperty('--scroll',scrollY+'px')},{passive:true});
+})();
